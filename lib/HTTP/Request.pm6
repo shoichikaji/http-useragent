@@ -30,7 +30,7 @@ multi method new(*%args) {
     }
 
     my $header = HTTP::Header.new(|%fields);
-    $header.field(Host => get-host-value($uri)) if $uri;
+    $header.field(Host => get-host-value($uri)) if $uri && !$header.field('Host');
     self.bless(:$method, :$url, :$header, :$file, :$uri);
 }
 
